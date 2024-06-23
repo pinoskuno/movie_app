@@ -1,56 +1,60 @@
-import React from 'react'
+import React from 'react' 
 import { ScrollView, View, StatusBar, StyleSheet } from 'react-native'
-import type { MovieListProps } from '../types/app'
-import MovieList from '../components/movies/MoiveList'
+import type { MovieListProps } from '../types/app' 
+import MovieList from '../components/movies/MoiveList' 
+
 
 const movieLists: MovieListProps[] = [
   {
-    title: 'Now Playing in Theater',
-    path: 'movie/now_playing?language=en-US&page=1',
-    coverType: 'backdrop',
+    title: 'Now Playing in Theater', 
+    path: 'movie/now_playing?language=en-US&page=1', 
+    coverType: 'backdrop', 
   },
   {
-    title: 'Upcoming Movies',
-    path: 'movie/upcoming?language=en-US&page=1',
-    coverType: 'poster',
+    title: 'Upcoming Movies', 
+    path: 'movie/upcoming?language=en-US&page=1', 
+    coverType: 'poster', 
   },
   {
-    title: 'Top Rated Movies',
-    path: 'movie/top_rated?language=en-US&page=1',
-    coverType: 'poster',
+    title: 'Top Rated Movies', 
+    path: 'movie/top_rated?language=en-US&page=1', 
+    coverType: 'poster', 
   },
   {
-    title: 'Popular Movies',
-    path: 'movie/popular?language=en-US&page=1',
-    coverType: 'poster',
+    title: 'Popular Movies', 
+    path: 'movie/popular?language=en-US&page=1', 
+    coverType: 'poster', 
   },
 ]
-
 const Home = (): JSX.Element => {
   return (
     <ScrollView>
+      {/* Menggunakan ScrollView untuk membuat tampilan bisa di-scroll */}
       <View style={styles.container}>
+        {/* Menggunakan View dengan gaya yang telah ditentukan */}
         {movieLists.map((movieList) => (
           <MovieList
-            title={movieList.title}
-            path={movieList.path}
-            coverType={movieList.coverType}
-            key={movieList.title}
+            title={movieList.title} 
+            path={movieList.path} 
+            coverType={movieList.coverType} 
+            key={movieList.title} 
           />
         ))}
         <StatusBar translucent={false} />
+        {/* Menampilkan StatusBar yang tidak tembus pandang */}
       </View>
     </ScrollView>
   )
 }
 
+
 const styles = StyleSheet.create({
   container: {
-    marginTop: StatusBar.currentHeight ?? 32,
-    alignItems: 'center',
-    justifyContent: 'center',
-    rowGap: 16,
+    marginTop: StatusBar.currentHeight ?? 32, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    rowGap: 16, 
   },
 })
 
-export default Home
+export default Home 

@@ -1,26 +1,39 @@
-import React from 'react'
-import { ImageBackground, Text, StyleSheet, View } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
-import { LinearGradient } from 'expo-linear-gradient'
-import type { MovieItemProps } from '../../types/app'
+import React from 'react' 
+import {
+  ImageBackground,
+  Text,
+  StyleSheet,
+  View,
+  TouchableOpacity, 
+} from 'react-native'
+import { useNavigation, StackActions } from '@react-navigation/native' 
+import { FontAwesome } from '@expo/vector-icons' 
+import { LinearGradient } from 'expo-linear-gradient' 
+import type { MovieItemProps } from '../../types/app' 
 
 const MovieItem = ({ movie, size, coverType }: MovieItemProps): JSX.Element => {
+  const navigation = useNavigation() 
+  const pushAction = StackActions.push('MovieDetail', { id: movie.id }) 
   return (
-    <View>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.dispatch(pushAction) 
+      }}
+    >
       <ImageBackground
         resizeMode="cover"
-        style={[size, styles.backgroundImage]}
-        imageStyle={styles.backgroundImageStyle}
+        style={[size, styles.backgroundImage]} 
+        imageStyle={styles.backgroundImageStyle} 
         source={{
           uri: `https://image.tmdb.org/t/p/w500${
             coverType === 'backdrop' ? movie.backdrop_path : movie.poster_path
-          }`,
+          }`, 
         }}
       >
         <LinearGradient
-          colors={['#00000000', 'rgba(0, 0, 0, 0.7)']}
-          locations={[0.6, 0.8]}
-          style={styles.gradientStyle}
+          colors={['#00000000', 'rgba(0, 0, 0, 0.7)']} 
+          locations={[0.6, 0.8]} 
+          style={styles.gradientStyle} 
         >
           <Text style={styles.movieTitle}>{movie.title}</Text>
           <View style={styles.ratingContainer}>
@@ -29,37 +42,36 @@ const MovieItem = ({ movie, size, coverType }: MovieItemProps): JSX.Element => {
           </View>
         </LinearGradient>
       </ImageBackground>
-    </View>
+    </TouchableOpacity>
   )
 }
-
 const styles = StyleSheet.create({
   backgroundImage: {
-    marginRight: 4,
+    marginRight: 4, 
   },
   backgroundImageStyle: {
-    borderRadius: 8,
+    borderRadius: 8, 
   },
   movieTitle: {
-    color: 'white',
+    color: 'white', 
   },
   gradientStyle: {
-    padding: 8,
-    height: '100%',
+    padding: 8, 
+    height: '100%', 
     width: '100%',
-    borderRadius: 8,
-    display: 'flex',
-    justifyContent: 'flex-end',
+    borderRadius: 8, 
+    display: 'flex', 
+    justifyContent: 'flex-end', 
   },
   ratingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 2,
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    gap: 2, 
   },
   rating: {
-    color: 'yellow',
-    fontWeight: '700',
+    color: 'yellow', 
+    fontWeight: '700', 
   },
 })
 
-export default MovieItem
+export default MovieItem 
