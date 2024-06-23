@@ -12,6 +12,7 @@ const HomeStackNavigation = (): JSX.Element => (
       component={Home} 
       options={{ headerShown: false }} 
     />
+
     <Stack.Screen
       name="MovieDetail" 
       component={MovieDetail} 
@@ -19,4 +20,5 @@ const HomeStackNavigation = (): JSX.Element => (
     />
   </Stack.Navigator>
 )
+
 export default HomeStackNavigation
